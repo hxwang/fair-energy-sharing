@@ -12,6 +12,9 @@ namespace fair_energy_sharing
         public int TotalTimeSlot { get; private set; }
         public AssignerType AssignerType { get; private set; }
 
+
+        public String ConsumptionTracePath{get; private set;}
+        public String HarvestingTracePath { get; private set; }
         /// <summary>
         /// TODO: read from file
         /// </summary>
@@ -19,6 +22,10 @@ namespace fair_energy_sharing
             this.UnitEnergyPrice = 1;
             this.TotalTimeSlot = 4;
             this.AssignerType = EnergyAssigner.AssignerType.CGAssigner;
+            
+            //TODO: set valid path
+            this.ConsumptionTracePath = @"../../../data/consumptionTrace.txt";
+            this.HarvestingTracePath = @"../../../data/harvestingTrace.txt";
         }
     }
 }

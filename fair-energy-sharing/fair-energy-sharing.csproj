@@ -56,8 +56,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulation\Simulator.cs" />
     <Compile Include="Simulation\SupplyAndDemandTrend.cs" />
+    <Compile Include="Util\ReadFile.cs" />
+    <Compile Include="Util\StreamReaderExtension.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Test\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

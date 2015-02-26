@@ -101,6 +101,8 @@ namespace fair_energy_sharing.Model
         /// energy monetary cost at each time slot
         /// </summary>
         public  double[] EnergyCostList;
+        private System.IO.StreamReader harvestingReader;
+        private List<double> consumptionList;
         #endregion 
         
 
@@ -123,6 +125,14 @@ namespace fair_energy_sharing.Model
             this.Config = config;
             #endregion
 
+        }
+
+        public Home(fair_energy_sharing.Config config, System.IO.StreamReader harvestingReader, List<double> consumptionList)
+        {
+            // TODO: Complete member initialization
+            this.Config = config;
+            this.harvestingReader = harvestingReader;
+            this.consumptionList = consumptionList;
         }
 
         public void UpdateSuppliedEnergy(double newVal)

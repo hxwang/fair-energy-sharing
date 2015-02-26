@@ -93,6 +93,10 @@ namespace fair_energy_sharing.EnergyAssigner
             return totalEnergySupply;
         }
 
+        /// <summary>
+        /// calculate total assign
+        /// </summary>
+        /// <param name="demanders"></param>
         public void calculateTotalAssign(List<Home> demanders) {
             demanders.ForEach(d =>
                 {
