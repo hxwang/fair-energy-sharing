@@ -11,6 +11,7 @@ namespace fair_energy_sharing.Model
 
         #region simulation setting
         public int CurrTime { get; set; }
+        public Config Config { get; set; }
 
         public List<double> EnergyHarvestingList { get; private set; }
         public List<double> EnergyConsumptionList { get; private set; }
@@ -48,6 +49,22 @@ namespace fair_energy_sharing.Model
                 else return 0;
             }
         
+        }
+
+        public double AcquiredAdjustReputationEnergy
+        {
+            get;
+            set;
+        }
+
+        public void ResetAcquiredAdjustReputationEnergy() {
+            this.AcquiredAdjustReputationEnergy = 0;
+        }
+
+        public double RemainEnergyDemandAfterAjustReputation {
+            get {
+                return this.OriginEnergyDemand - this.AcquiredAdjustReputationEnergy;
+            }
         }
 
         public double Reputation { get; set; }
@@ -103,7 +120,7 @@ namespace fair_energy_sharing.Model
 
             this.Reputation = 0;
             this.CurrTime = 0;
-
+            this.Config = config;
             #endregion
 
         }
@@ -127,6 +144,11 @@ namespace fair_energy_sharing.Model
         public double CurrAcquiredEnergy { get { return this.AcquiredEnergyList[this.CurrTime]; } }
         public double CurrEnergyCost { get { return this.EnergyCostList[this.CurrTime]; } }
 
+
+        public void updateEnergyCost(double usedGridEnergyAmount)
+        {
+            this.EnergyCostList[this.CurrTime] = usedGridEnergyAmount * this.Config.UnitEnergyPrice;
+        }
     }
 
 
@@ -137,10 +159,19 @@ namespace fair_energy_sharing.Model
         }
     }
 
+    //TODO: change to sort using remaining energy demand 
     //Comparator to sort energy demand in non-decreasing order
-    class DemandIncreaseComparator : IComparer<Home> {
+    class RemainDemandIncreaseComparator : IComparer<Home> {
         public int Compare(Home x, Home y) {
-            return Math.Abs(x.OriginEnergyDemand).CompareTo(Math.Abs(y.OriginEnergyDemand));
+            return Math.Abs(x.RemainEnergyDemandAfterAjustReputation).CompareTo(Math.Abs(y.RemainEnergyDemandAfterAjustReputation));
+        }
+    }
+
+    //comparator to sort energy supply in non-increasing order
+    class SupplyIncreaesComparator : IComparer<Home> {
+        public int Compare(Home x, Home y)
+        {
+            return Math.Abs(x.OriginEnergySupply).CompareTo(Math.Abs(y.OriginEnergySupply));
         }
     }
 }

@@ -18,5 +18,9 @@ namespace fair_energy_sharing.EnergyAssigner
         public virtual void updateSupplierCredits(List<Home> suppliers) {
             suppliers.ForEach(h => { h.Reputation += h.CurrSuppliedEnergy; });
         }
+
+        public virtual void updateEnergyCost(List<Home> demanders) {
+            demanders.ForEach(h => { h.updateEnergyCost(h.OriginEnergyDemand - h.CurrAcquiredEnergy); });
+        }
     }
 }

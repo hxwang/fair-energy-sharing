@@ -16,7 +16,7 @@ namespace fair_energy_sharing
         /// TODO: read from file
         /// </summary>
         public Config() {
-            this.UnitEnergyPrice = 0.6;
+            this.UnitEnergyPrice = 1;
             this.TotalTimeSlot = 4;
             this.AssignerType = EnergyAssigner.AssignerType.CGAssigner;
         }

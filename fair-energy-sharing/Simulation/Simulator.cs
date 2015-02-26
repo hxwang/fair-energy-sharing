@@ -33,7 +33,7 @@ namespace fair_energy_sharing.Simulation
         public void PrintResult() { 
         
             Homes.ForEach(h => {
-                Console.WriteLine("AvailableSupply/Supplied = {0}/{1}, Required/Assigned = {2}/{3}, Reputation = {4} ",  h.OriginEnergySupply, h.CurrSuppliedEnergy, h.OriginEnergyDemand, h.CurrAcquiredEnergy, h.Reputation);
+                Console.WriteLine("AvailableSupply/Supplied = {0}/{1}, Required/Assigned = {2}/{3}, Reputation = {4}， Cost = {5} ",  h.OriginEnergySupply, h.CurrSuppliedEnergy, h.OriginEnergyDemand, h.CurrAcquiredEnergy, h.Reputation, h.CurrEnergyCost);
             });
         }
     }
