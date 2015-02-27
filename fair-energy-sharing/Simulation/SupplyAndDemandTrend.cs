@@ -5,6 +5,7 @@ using System.Text;
 using fair_energy_sharing.Model;
 using fair_energy_sharing.Util;
 using fair_energy_sharing.EnergyAssigner;
+using System.IO;
 
 namespace fair_energy_sharing.Simulation
 {
@@ -30,9 +31,19 @@ namespace fair_energy_sharing.Simulation
                 Console.WriteLine("--------------------{0}------------------", assignerType);
                 Simulator = new Simulator(Config, homes, assignerType);
                 Simulator.Simulate();
+                SimulationResultProcess.ProcessHomeResult(homes, Config.SimulationOutputPath+ assignerType);
             }
             
         }
+
+        public void runRepeatSimulation() {
+            for (int i = 0; i < Config.Repeatition; i++) {
+                runOneSimulation();
+            }
+        }
+
+
+       
 
 
         /// <summary>

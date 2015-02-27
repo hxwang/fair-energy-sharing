@@ -213,4 +213,10 @@ namespace fair_energy_sharing.Model
             return y.OriginEnergyDemand.CompareTo(x.OriginEnergyDemand);
         }
     }
+
+    class TotalSupplyIncreaseComparator : IComparer<Home> {
+        public int Compare(Home x, Home y) {
+            return x.SuppliedEnergyList.Sum().CompareTo(y.SuppliedEnergyList.Sum());
+        }
+    }
 }

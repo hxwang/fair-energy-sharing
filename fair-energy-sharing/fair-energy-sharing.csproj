@@ -62,6 +62,7 @@
     <Compile Include="Simulation\SupplyAndDemandTrend.cs" />
     <Compile Include="Util\HarvestingEnergyGenerator.cs" />
     <Compile Include="Util\ReadFile.cs" />
+    <Compile Include="Util\SimulationResultProcess.cs" />
     <Compile Include="Util\StreamReaderExtension.cs" />
   </ItemGroup>
   <ItemGroup>

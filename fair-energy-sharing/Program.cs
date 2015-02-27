@@ -18,7 +18,7 @@ namespace fair_energy_sharing
 
         public static void testCGAssigner(Config config) { 
             SupplyAndDemandTrend sim = new SupplyAndDemandTrend(config);
-            sim.runOneSimulation();
+            sim.runRepeatSimulation();
         }
 
         public static void UpdateConfig(string[] args, Config config) {
@@ -31,6 +31,9 @@ namespace fair_energy_sharing
                 }
                 else if (arg == "-price") {
                     config.UnitEnergyPrice = double.Parse(args[++i]);
+                }
+                else if (arg == "-r") {
+                    config.Repeatition = int.Parse(args[++i]);
                 }
             }
         
