@@ -8,7 +8,7 @@ namespace fair_energy_sharing.Util
 {
     public static class StreamReaderExtension
     {
-        public static List<double> ReadList(this StreamReader self)
+        public static List<double> ReadList(this StreamReader self, int count)
         {
             var line = self.ReadLine();
             var items = line.Split(' ');
@@ -16,6 +16,7 @@ namespace fair_energy_sharing.Util
             foreach (String s in items)
             {
                 list.Add(double.Parse(s));
+                if (list.Count == count) break;
             }
 
             return list;

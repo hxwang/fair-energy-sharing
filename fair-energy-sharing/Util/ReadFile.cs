@@ -17,8 +17,8 @@ namespace fair_energy_sharing.Util
 
             while (!consumptionReader.EndOfStream && !harvestingReader.EndOfStream) { 
                 
-                var consumptionList = consumptionReader.ReadList();
-                var harvestingList = harvestingReader.ReadList();
+                var consumptionList = consumptionReader.ReadList(config.TotalTimeSlot);
+                var harvestingList = harvestingReader.ReadList(config.TotalTimeSlot);
 
                 Home h = new Home(config, harvestingList, consumptionList);
                 homes.Add(h);
