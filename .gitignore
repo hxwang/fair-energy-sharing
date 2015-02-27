@@ -3,7 +3,7 @@
 
 ### Data file
 data/traces/
-traces/
+
 
 # User-specific files
 *.suo
