@@ -156,12 +156,7 @@ namespace fair_energy_sharing.EnergyAssigner
         }
 
 
-        public void UpdateReputationAndCost(List<Home> suppliers, List<Home> demanders) {
-            updateDemanderCredits(demanders);
-            updateSupplierCredits(suppliers);
-            updateEnergyCost(demanders);
-        
-        }
+       
 
 
         public void MatchSupplyLargerThanDemand(List<Home> suppliers, List<Home> demanders) {

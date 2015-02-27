@@ -113,12 +113,16 @@ namespace fair_energy_sharing.Model
         {
 
             #region init
+            int totalTimeSlot = energyHarvestingList.Count;
+            if (config.TotalTimeSlot != totalTimeSlot) {
+                throw new Exception(String.Format("The list size {0} is different from the total time slots {1}", totalTimeSlot, config.TotalTimeSlot));
+            }
             this.EnergyHarvestingList = energyHarvestingList;
             this.EnergyConsumptionList = energyConsumptionList;
 
-            this.SuppliedEnergyList = new double[config.TotalTimeSlot];
-            this.AcquiredEnergyList = new double[config.TotalTimeSlot];
-            this.EnergyCostList = new double[config.TotalTimeSlot];                        
+            this.SuppliedEnergyList = new double[totalTimeSlot];
+            this.AcquiredEnergyList = new double[totalTimeSlot];
+            this.EnergyCostList = new double[totalTimeSlot];                        
 
             this.Reputation = 0;
             this.CurrTime = 0;
@@ -127,13 +131,7 @@ namespace fair_energy_sharing.Model
 
         }
 
-        public Home(fair_energy_sharing.Config config, System.IO.StreamReader harvestingReader, List<double> consumptionList)
-        {
-            // TODO: Complete member initialization
-            this.Config = config;
-            this.harvestingReader = harvestingReader;
-            this.consumptionList = consumptionList;
-        }
+       
 
         public void UpdateSuppliedEnergy(double newVal)
         {
@@ -182,6 +180,29 @@ namespace fair_energy_sharing.Model
         public int Compare(Home x, Home y)
         {
             return Math.Abs(x.OriginEnergySupply).CompareTo(Math.Abs(y.OriginEnergySupply));
+        }
+    }
+
+
+    /// <summary>
+    /// sort supply in deceasing order
+    /// </summary>
+    class SupplyDecreaseComparator : IComparer<Home>
+    {
+        public int Compare(Home x, Home y)
+        {
+            return y.OriginEnergySupply.CompareTo(x.OriginEnergySupply);
+        }
+    }
+
+
+    /// <summary>
+    /// sort demand in decreasing order
+    /// </summary>
+    class DemandDecreaseComparator: IComparer<Home>{
+        public int Compare(Home x, Home y)
+        {
+            return y.OriginEnergyDemand.CompareTo(x.OriginEnergyDemand);
         }
     }
 }

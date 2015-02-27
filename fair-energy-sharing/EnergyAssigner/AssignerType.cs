@@ -9,6 +9,8 @@ namespace fair_energy_sharing.EnergyAssigner
     {
         CGAssigner,
         EqualAssigner,
-        ProportionAssigner
+        ProportionAssigner,
+        PreferLargerDemandAssigner,
+        PreferLargeReputationAssigner
     }
 }

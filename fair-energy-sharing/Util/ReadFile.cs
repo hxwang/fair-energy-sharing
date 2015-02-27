@@ -20,7 +20,7 @@ namespace fair_energy_sharing.Util
                 var consumptionList = consumptionReader.ReadList();
                 var harvestingList = harvestingReader.ReadList();
 
-                Home h = new Home(config, harvestingReader, consumptionList);
+                Home h = new Home(config, harvestingList, consumptionList);
                 homes.Add(h);
             }
 
