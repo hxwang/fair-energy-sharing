@@ -18,7 +18,7 @@ namespace fair_energy_sharing
 
         public static void testCGAssigner(Config config) { 
             SupplyAndDemandTrend sim = new SupplyAndDemandTrend(config);
-            sim.runSimulation();
+            sim.runOneSimulation();
         }
 
         public static void UpdateConfig(string[] args, Config config) {

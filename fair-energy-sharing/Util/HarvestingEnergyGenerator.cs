@@ -17,7 +17,7 @@ namespace fair_energy_sharing.Util
         public static List<double> GenerateEnergy(Config config, String realSolarTracePath) {
             List<double> rnt = new List<double>();
             StreamReader sr = new StreamReader(realSolarTracePath);           
-            sr.ReadList(config.TotalTimeSlot);
+            sr.ReadListPerLine(config.TotalTimeSlot);
             return rnt;
         }
     }

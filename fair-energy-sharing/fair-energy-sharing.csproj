@@ -49,6 +49,7 @@
     <Compile Include="EnergyAssigner\AssingerBase.cs" />
     <Compile Include="EnergyAssigner\CGAssigner.cs" />
     <Compile Include="EnergyAssigner\IAssigner.cs" />
+    <Compile Include="EnergyAssigner\NoShareAssigner.cs" />
     <Compile Include="EnergyAssigner\PreferLargerAssigner.cs" />
     <Compile Include="EnergyAssigner\PreferLargeReputationAssigner.cs" />
     <Compile Include="EnergyAssigner\ProportionAssigner.cs" />

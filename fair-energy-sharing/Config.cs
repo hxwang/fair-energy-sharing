@@ -28,7 +28,7 @@ namespace fair_energy_sharing
         public Config() {
             this.UnitEnergyPrice = 1;
             this.TotalTimeSlot = 4;
-            this.AssignerType = EnergyAssigner.AssignerType.PreferLargeReputationAssigner;
+           
 
 
             #region printSetting

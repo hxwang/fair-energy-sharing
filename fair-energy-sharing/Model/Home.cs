@@ -84,6 +84,8 @@ namespace fair_energy_sharing.Model
             }
         }
 
+        
+
         #endregion
 
         #region simulation results
@@ -131,6 +133,10 @@ namespace fair_energy_sharing.Model
 
         }
 
+        public Home Clone() {
+            Home home = new Home(this.Config, this.EnergyHarvestingList, this.EnergyConsumptionList);
+            return home;
+        }
        
 
         public void UpdateSuppliedEnergy(double newVal)
@@ -157,6 +163,8 @@ namespace fair_energy_sharing.Model
         {
             this.EnergyCostList[this.CurrTime] = usedGridEnergyAmount * this.Config.UnitEnergyPrice;
         }
+
+      
     }
 
 

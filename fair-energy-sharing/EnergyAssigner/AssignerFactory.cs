@@ -8,7 +8,7 @@ namespace fair_energy_sharing.EnergyAssigner
 {
     public static class AssignerFactory
     {
-        public static IAssigner CreateAssigner(AssignerType assignerType) {
+        public static IAssigner CreateAssigner(string assignerType) {
 
             // get the type of the interface
             var type = typeof(IAssigner);
@@ -23,7 +23,7 @@ namespace fair_energy_sharing.EnergyAssigner
             // find the one we need
             // var myClass = classes.FirstOrDefault(c => c.Name.ToLower().Contains(arrivalType.ToString().ToLower()));
 
-            var myClass = classes.FirstOrDefault(c => c.Name.Equals(assignerType.ToString()));
+            var myClass = classes.FirstOrDefault(c => c.Name.Equals(assignerType));
             // create an instance from a type
             var instance = (IAssigner)Activator.CreateInstance(myClass);
             // return the created instance

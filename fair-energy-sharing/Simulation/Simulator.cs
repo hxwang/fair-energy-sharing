@@ -13,10 +13,10 @@ namespace fair_energy_sharing.Simulation
         public List<Home> Homes { get; private set; }
         public IAssigner Assigner { get; private set; }
 
-        public Simulator(Config config, List<Home> homes) {
+        public Simulator(Config config, List<Home> homes, string assignerType) {
             this.Config = config;
             this.Homes = homes;
-            this.Assigner = AssignerFactory.CreateAssigner(config.AssignerType);
+            this.Assigner = AssignerFactory.CreateAssigner(assignerType);
         }
 
         
