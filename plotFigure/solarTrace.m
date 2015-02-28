@@ -46,26 +46,26 @@ p = area(Solar_High(1,:)/maxNum*100 *solar_loadFactor,'FaceColor','g');
  
    
 %change x-axis scale 
-axis([1 1440 0 100])
+axis([0 1440 0 100])
     
 set(axes1,'XGrid','on','YGrid','off');
 leg = legend(axes1,'show');
 set(leg,'FontSize',30);
  
 set(axes1,'YTick', [20,40,60,80,100], 'YTickLabel',{ 20,40,60,80,100},'XGrid','off','YGrid','off');
-
+set(axes1,'XTick', [0:12*10: 12*24*5], 'XTickLabel',{ 0:10:24*5},'XGrid','off','YGrid','off');
 
 
 % set(axes1,'XTick',[1:48*3:481*3],'XTickLabel',{'day-1 00:00','day-1 12:00','day-2 00:00','day-2 12:00','day-3 00:00','day-3 12:00','day-4 00:00','day-4 12:00','day-5 00:00','day-5 12:00','day-6 00:00'},'XGrid','on');
-set(axes1,'XTick',[1:48*3*2:481*3],'XTickLabel',{'day-1 00:00','day-2 00:00','day-3 00:00','day-4 00:00','day-5 00:00','day-6 00:00'},'XGrid','on');
-fix_xticklabels(gca,10,{'FontSize',30});
+%set(axes1,'XTick',[48*3:48*3*2:481*3],'XTickLabel',{'day-1','day-2 ','day-3','day-4','day-5'},'XGrid','on');
+%fix_xticklabels(gca,10,{'FontSize',30});
 
 %legend
 % legend('1K,Enumeration','1K,Approximation','5K,Enumeration','5K,Approximation','10K,Enumeration','10K,Approximation','100K,Enumeration','100K,Approximation')
 legend('Solar Trace','location','northwest')
 
-%set(get(axes1,'XLabel'),'String','Time','FontSize',30,'FontWeight','bold');
-set(get(axes1,'YLabel'),'String','Solar Energy Units','FontSize',30,'FontWeight','bold');
+set(get(axes1,'XLabel'),'String','Time (Hour)','FontSize',30,'FontWeight','bold');
+set(get(axes1,'YLabel'),'String','Solar power (kW)','FontSize',30,'FontWeight','bold');
 
 %save to file
 set(gcf, 'PaperPosition', [0 0 13 7]); %Position plot at left hand corner with width 5 and height 5.
