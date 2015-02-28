@@ -24,22 +24,40 @@ namespace fair_energy_sharing.Simulation
 
 
         public void runOneSimulation() {
-            this.Homes = Util.ReadFile.InitHomeFromFile(Config);  
-   
+
+            //generate home
+            this.Homes = Util.HomeGenerator.GenerateHome(this.Config);
+            
+
+            //run different algorithms
             foreach(String assignerType in Enum.GetNames(typeof(AssignerType))){
                 List<Home> homes = CloneHomes(this.Homes);
                 Console.WriteLine("--------------------{0}------------------", assignerType);
                 Simulator = new Simulator(Config, homes, assignerType);
                 Simulator.Simulate();
+                //write simulation results into file
                 SimulationResultProcess.ProcessHomeResult(homes, Config.SimulationOutputPath+ assignerType);
             }
             
         }
 
+        //run multiple repeatitions
         public void runRepeatSimulation() {
             for (int i = 0; i < Config.Repeatition; i++) {
                 runOneSimulation();
             }
+        }
+
+
+        /// <summary>
+        /// test the corretness of the generated home
+        /// Method: print the homes information to file
+        /// Plot files in matlab to see the trend of energy consumption and harvesting energy
+        /// </summary>
+        public void testHomeSettings() {
+
+            this.Homes = Util.HomeGenerator.GenerateHome(this.Config);
+            FileSaver.SaveHomeListToFile(this.Homes);
         }
 
 

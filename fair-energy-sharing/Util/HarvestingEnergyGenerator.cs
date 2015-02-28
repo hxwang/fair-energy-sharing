@@ -14,11 +14,13 @@ namespace fair_energy_sharing.Util
         /// <param name="config"></param>
         /// <param name="realSolarTracePath"></param>
         /// <returns></returns>
-        public static List<double> GenerateEnergy(Config config, String realSolarTracePath) {
+        public static List<double> GenerateHarvestingEnergy(Config config) {
             List<double> rnt = new List<double>();
-            StreamReader sr = new StreamReader(realSolarTracePath);           
-            sr.ReadListPerLine(config.TotalTimeSlot);
+            StreamReader sr = new StreamReader(config.HarvestingTracePath);
+            rnt = sr.ReadListColumn(config.TotalTimeSlot);
             return rnt;
         }
+
+       
     }
 }

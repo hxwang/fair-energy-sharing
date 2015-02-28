@@ -13,15 +13,23 @@ namespace fair_energy_sharing
         public AssignerType AssignerType { get; private set; }
 
 
-        public String ConsumptionTracePath{get; private set;}
-        public String HarvestingTracePath { get; private set; }
+       
+      
 
         #region simulation setting
         public int Repeatition { get;  set; }
+        public int SimulationHomeCount { get; set; }
+        public int TotalHomeCount { get; set; }
+        public int Days { get; set; }
+
+        //tune the solar panel size to satisfy home needs
+        public double HarvestingPeakOverConsumptionPeak { get; set; }
 
         #endregion
         #region filePath
         public String SimulationOutputPath { get; private set; }
+        public String HomeEnergyConsumptionTracePath { get; private set; }
+        public String HarvestingTracePath { get; private set; }
         #endregion
 
         #region printSetting
@@ -33,8 +41,10 @@ namespace fair_energy_sharing
         /// TODO: read from file
         /// </summary>
         public Config() {
-            this.UnitEnergyPrice = 1;
-            this.TotalTimeSlot = 4;
+            //unit energy prices is around 0.13/kWh
+            //in the simulation, the scheduling is every 5 minutes, there are in total 12 of 5 minutes in one hour
+            this.UnitEnergyPrice = 0.13/0.12;
+            this.TotalTimeSlot = 1440;
            
 
 
@@ -44,13 +54,20 @@ namespace fair_energy_sharing
 
             //TODO: set valid path
             #region path setting
-            this.ConsumptionTracePath = @"..\..\..\data\consumptionTrace.txt";
-            this.HarvestingTracePath = @"..\..\..\data\harvestingTrace.txt";
+            //this.ConsumptionTracePath = @"..\..\..\data\consumptionTrace.txt";
+            this.HomeEnergyConsumptionTracePath = @"..\..\..\..\smart-grid-workloads\smart-home\processedData\microgrid_5_days\";
+            this.HarvestingTracePath = @"..\..\..\data\processedTrace\solar.txt";
             this.SimulationOutputPath = @"..\..\..\simulationResult\";
+          
+
             #endregion
 
             #region simulation setting
             this.Repeatition = 3;
+            this.SimulationHomeCount = 1;
+            this.TotalHomeCount = 313;
+            this.HarvestingPeakOverConsumptionPeak = 2;
+
             #endregion
         }
     }
