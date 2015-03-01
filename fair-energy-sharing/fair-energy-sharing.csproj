@@ -64,6 +64,7 @@
     <Compile Include="Util\HarvestingEnergyGenerator.cs" />
     <Compile Include="Util\HomeConsumptionEnergyGenerator.cs" />
     <Compile Include="Util\HomeGenerator.cs" />
+    <Compile Include="Util\RandomGenerator.cs" />
     <Compile Include="Util\ReadFile.cs" />
     <Compile Include="Util\SimulationResultProcess.cs" />
     <Compile Include="Util\StreamReaderExtension.cs" />

@@ -32,7 +32,7 @@ namespace fair_energy_sharing.Simulation
             //run different algorithms
             foreach(String assignerType in Enum.GetNames(typeof(AssignerType))){
                 List<Home> homes = CloneHomes(this.Homes);
-                Console.WriteLine("--------------------{0}------------------", assignerType);
+                //Console.WriteLine("--------------------{0}------------------", assignerType);
                 Simulator = new Simulator(Config, homes, assignerType);
                 Simulator.Simulate();
                 //write simulation results into file

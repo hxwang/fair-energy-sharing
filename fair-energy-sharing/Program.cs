@@ -12,7 +12,10 @@ namespace fair_energy_sharing
         {
             Config config = new Config();
             UpdateConfig(args, config);
+            Util.RandomGenerator.SetSeed(config.Seed);
+
             deltePreviousResult(config);
+            PrintConfig(config);
             testCGAssigner(config);
         }
 
@@ -26,6 +29,8 @@ namespace fair_energy_sharing
 
         public static void Empty( System.IO.DirectoryInfo directory)
         {
+            if (directory.Exists == false) directory.Create();
+
             foreach (System.IO.FileInfo file in directory.GetFiles()) file.Delete();
             foreach (System.IO.DirectoryInfo subDirectory in directory.GetDirectories()) subDirectory.Delete(true);
         }
@@ -33,7 +38,7 @@ namespace fair_energy_sharing
 
         public static void testCGAssigner(Config config) { 
             SupplyAndDemandTrend sim = new SupplyAndDemandTrend(config);
-            sim.runOneSimulation();
+            sim.runRepeatSimulation();
         }
 
         public static void UpdateConfig(string[] args, Config config) {
@@ -53,7 +58,18 @@ namespace fair_energy_sharing
                 else if (arg == "-hc") {
                     config.SimulationHomeCount = int.Parse(args[++i]);
                 }
+                else if(arg == "-ratio"){
+                    config.HarvestingPeakOverConsumptionPeak = double.Parse(args[++i]);
+                    config.SimulationOutputPath = config.SimulationOutputPath + config.HarvestingPeakOverConsumptionPeak*100+@"\";
+                }
+                i++;
+               
             }
+        
+        }
+
+        public static void PrintConfig(Config config) {
+            Console.WriteLine("Config ratio = {0}, simHomeCount = {1}, timeSlot = {2}", config.HarvestingPeakOverConsumptionPeak, config.TotalHomeCount, config.TotalHomeCount);
         
         }
     }

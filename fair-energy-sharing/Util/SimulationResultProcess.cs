@@ -33,10 +33,11 @@ namespace fair_energy_sharing.Util
                 finalReputationList.Add(h.Reputation);
             });
 
-            WriteAverageResultToFile(costList, path + "_cost.txt");
-            WriteAverageResultToFile(energyInList, path + "_energyIn.txt");
-            WriteAverageResultToFile(energyOutList, path + "_energyOut.txt");
-            WriteAverageResultToFile(finalReputationList, path + "_reputation.txt");
+            WriteListResultToFile(costList, path + "_cost.txt");
+            WriteDoubleResultToFile(costList.Average(), path + "_Meancost.txt");
+            WriteListResultToFile(energyInList, path + "_energyIn.txt");
+            WriteListResultToFile(energyOutList, path + "_energyOut.txt");
+            WriteListResultToFile(finalReputationList, path + "_reputation.txt");
 
         }
 
@@ -46,7 +47,7 @@ namespace fair_energy_sharing.Util
         /// </summary>
         /// <param name="list"></param>
         /// <param name="path"></param>
-        public static void WriteAverageResultToFile(List<double> list, String path)
+        public static void WriteListResultToFile(List<double> list, String path)
         {
             if (File.Exists(path))
             {
@@ -64,6 +65,29 @@ namespace fair_energy_sharing.Util
                 }
             
             }
+            
+        }
+
+        public static void WriteDoubleResultToFile(double val, String path) {
+            if (File.Exists(path))
+            {
+                using (StreamWriter sw = new StreamWriter(path, true))
+                {
+                    sw.Write(val + " ");
+                    sw.WriteLine();
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = new StreamWriter(path))
+                {
+                    sw.Write(val + " ");
+                    sw.WriteLine();
+                }
+
+            }
+        
+        
         }
 
     }

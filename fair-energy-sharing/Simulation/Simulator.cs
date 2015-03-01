@@ -23,7 +23,7 @@ namespace fair_energy_sharing.Simulation
         public void Simulate() {
 
             for (int i = 0; i < Config.TotalTimeSlot; i++) {
-                Console.WriteLine();
+                //Console.WriteLine();
                 Homes.ForEach(h => h.CurrTime = i);
                 Assigner.Assign(this.Homes);
                 PrintResult();

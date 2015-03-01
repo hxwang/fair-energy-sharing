@@ -21,13 +21,14 @@ namespace fair_energy_sharing
         public int SimulationHomeCount { get; set; }
         public int TotalHomeCount { get; set; }
         public int Days { get; set; }
+        public int Seed { get; set; }
 
         //tune the solar panel size to satisfy home needs
         public double HarvestingPeakOverConsumptionPeak { get; set; }
 
         #endregion
         #region filePath
-        public String SimulationOutputPath { get; private set; }
+        public String SimulationOutputPath { get;  set; }
         public String HomeEnergyConsumptionTracePath { get; private set; }
         public String HarvestingTracePath { get; private set; }
         #endregion
@@ -43,13 +44,13 @@ namespace fair_energy_sharing
         public Config() {
             //unit energy prices is around 0.13/kWh
             //in the simulation, the scheduling is every 5 minutes, there are in total 12 of 5 minutes in one hour
-            this.UnitEnergyPrice = 0.13/0.12;
+            this.UnitEnergyPrice = 0.13/12;
             this.TotalTimeSlot = 1440;
            
 
 
             #region printSetting
-            PrintDetailOfEachHome = true;
+            PrintDetailOfEachHome = false;
             #endregion
 
             //TODO: set valid path
@@ -63,10 +64,11 @@ namespace fair_energy_sharing
             #endregion
 
             #region simulation setting
-            this.Repeatition = 3;
-            this.SimulationHomeCount = 1;
+            this.Repeatition = 30;
+            this.SimulationHomeCount = 100;
             this.TotalHomeCount = 313;
-            this.HarvestingPeakOverConsumptionPeak = 2;
+            this.HarvestingPeakOverConsumptionPeak = 0.3;
+            this.Seed = 8765;
 
             #endregion
         }
