@@ -57,7 +57,9 @@ namespace fair_energy_sharing
             #region path setting
             //this.ConsumptionTracePath = @"..\..\..\data\consumptionTrace.txt";
             this.HomeEnergyConsumptionTracePath = @"..\..\..\..\smart-grid-workloads\smart-home\processedData\microgrid_5_days\";
-            this.HarvestingTracePath = @"..\..\..\data\processedTrace\solar.txt";
+            //this.HarvestingTracePath = @"..\..\..\data\processedTrace\solar.txt";
+            this.HarvestingTracePath = @"..\..\..\..\smart-grid-workloads\smart-grid-workloads\solarTrace\processedTrace\solar.txt";
+            
             this.SimulationOutputPath = @"..\..\..\simulationResult\";
           
 
