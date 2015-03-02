@@ -8,5 +8,5 @@ In this project, we design mechanisms to share renewable energy among homes.
 - [plot figures](./plotFigure)
 
 ### Simulation
-- [run simulation](./)
+- [run simulation](./runSimulation)
 - [simulation results]()
