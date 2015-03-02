@@ -9,4 +9,4 @@ In this project, we design mechanisms to share renewable energy among homes.
 
 ### Simulation
 - [run simulation](./runSimulation)
-- [simulation results]()
+- [simulation results](./simulationResult)
