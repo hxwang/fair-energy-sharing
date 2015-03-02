@@ -66,7 +66,7 @@ namespace fair_energy_sharing
             #region simulation setting
             this.Repeatition = 30;
             this.SimulationHomeCount = 100;
-            this.TotalHomeCount = 313;
+            this.TotalHomeCount = 311;
             this.HarvestingPeakOverConsumptionPeak = 0.3;
             this.Seed = 8765;
 

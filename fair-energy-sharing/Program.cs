@@ -69,7 +69,7 @@ namespace fair_energy_sharing
         }
 
         public static void PrintConfig(Config config) {
-            Console.WriteLine("Config ratio = {0}, simHomeCount = {1}, timeSlot = {2}", config.HarvestingPeakOverConsumptionPeak, config.TotalHomeCount, config.TotalHomeCount);
+            Console.WriteLine("Config ratio = {0}, simHomeCount = {1}, timeSlot = {2}", config.HarvestingPeakOverConsumptionPeak, config.TotalHomeCount, config.TotalTimeSlot);
         
         }
     }
