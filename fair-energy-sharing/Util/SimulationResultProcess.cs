@@ -19,7 +19,10 @@ namespace fair_energy_sharing.Util
         {
 
             homes.Sort(new TotalSupplyIncreaseComparator());
-
+            if (homes[homes.Count - 1].SuppliedEnergyList.Sum() - homes[homes.Count - 2].SuppliedEnergyList.Sum() >= 400)
+            {
+                Console.WriteLine("HomeId = {0}, {1}/{2}", homes[homes.Count - 1].HomeId, homes[homes.Count - 1].SuppliedEnergyList.Sum(), homes[homes.Count - 2].SuppliedEnergyList.Sum());
+            }
             var costList = new List<double>();
             var energyInList = new List<double>();
             var energyOutList = new List<double>();

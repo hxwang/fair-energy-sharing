@@ -11,9 +11,6 @@ namespace fair_energy_sharing
         public double UnitEnergyPrice { get;  set; }
         public int TotalTimeSlot { get;  set; }
         public AssignerType AssignerType { get; private set; }
-
-
-       
       
 
         #region simulation setting
@@ -22,6 +19,8 @@ namespace fair_energy_sharing
         public int TotalHomeCount { get; set; }
         public int Days { get; set; }
         public int Seed { get; set; }
+
+        public List<int> FilterHomeIdList { get; private set; }
 
         //tune the solar panel size to satisfy home needs
         public double HarvestingPeakOverConsumptionPeak { get; set; }
@@ -60,9 +59,7 @@ namespace fair_energy_sharing
             //this.HarvestingTracePath = @"..\..\..\data\processedTrace\solar.txt";
             this.HarvestingTracePath = @"..\..\smart-grid-workloads\solarTrace\processedTrace\solar.txt";
             
-            this.SimulationOutputPath = @"..\simulationResult\";
-          
-
+            this.SimulationOutputPath = @"..\simulationResult\";         
             #endregion
 
             #region simulation setting
@@ -71,6 +68,7 @@ namespace fair_energy_sharing
             this.TotalHomeCount = 311;
             this.HarvestingPeakOverConsumptionPeak = 0.3;
             this.Seed = 8765;
+            this.FilterHomeIdList = new List<int> { 185,3 };
 
             #endregion
         }

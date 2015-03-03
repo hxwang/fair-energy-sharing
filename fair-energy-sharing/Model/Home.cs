@@ -11,6 +11,8 @@ namespace fair_energy_sharing.Model
 
         #region simulation setting
         public int CurrTime { get; set; }
+
+        public int HomeId { get; set; }
         public Config Config { get; set; }
 
         public List<double> EnergyHarvestingList { get; private set; }
@@ -111,7 +113,7 @@ namespace fair_energy_sharing.Model
         /// <summary>
         /// TODO: how to initialized the energy harvesting list, and energy consumption list of different homes
         /// </summary>
-        public Home(Config config, List<double> energyHarvestingList, List<Double> energyConsumptionList)
+        public Home(Config config, List<double> energyHarvestingList, List<Double> energyConsumptionList, int homeId)
         {
 
             #region init
@@ -129,12 +131,13 @@ namespace fair_energy_sharing.Model
             this.Reputation = 0;
             this.CurrTime = 0;
             this.Config = config;
+            this.HomeId = homeId;
             #endregion
 
         }
 
         public Home Clone() {
-            Home home = new Home(this.Config, this.EnergyHarvestingList, this.EnergyConsumptionList);
+            Home home = new Home(this.Config, this.EnergyHarvestingList, this.EnergyConsumptionList, this.HomeId);
             return home;
         }
        

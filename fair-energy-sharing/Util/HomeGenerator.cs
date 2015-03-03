@@ -19,8 +19,13 @@ namespace fair_energy_sharing.Util
         public static List<Home> GenerateHome(Config config) {
             List<Home> rnt = new List<Home>();
             List<double> energyList = HarvestingEnergyGenerator.GenerateHarvestingEnergy(config);
-           
-            var candidateHomeList = Enumerable.Range(1, config.TotalHomeCount).OrderBy(t => Util.RandomGenerator.Next()).Take(config.SimulationHomeCount).ToList();
+
+            var candidateHomeList = Enumerable.Range(1, config.TotalHomeCount).ToList();
+            for (int i = 0; i < config.FilterHomeIdList.Count; i++) {
+                candidateHomeList.Remove(config.FilterHomeIdList[i]);
+            }
+
+                candidateHomeList = candidateHomeList.OrderBy(t => Util.RandomGenerator.Next()).Take(config.SimulationHomeCount).ToList();
             for (int i = 0; i < candidateHomeList.Count; i++) {
                 var energyConsumptionFile = config.HomeEnergyConsumptionTracePath + candidateHomeList[i] + ".txt";
                 StreamReader sr = new StreamReader(energyConsumptionFile);
@@ -31,7 +36,7 @@ namespace fair_energy_sharing.Util
                 List<double> energyHarvestingList = new List<double>(energyList);
                 RescaleHarvestingEnergy(energyHarvestingList, energyConsumptionList, config.HarvestingPeakOverConsumptionPeak);
 
-                Home home = new Home(config, energyHarvestingList, energyConsumptionList);
+                Home home = new Home(config, energyHarvestingList, energyConsumptionList, candidateHomeList[i]);
                 rnt.Add(home);
             
             }
