@@ -24,6 +24,11 @@ namespace fair_energy_sharing
 
         //tune the solar panel size to satisfy home needs
         public double HarvestingPeakOverConsumptionPeak { get; set; }
+        //determine HOC using peak
+        public Boolean HOCwithPeak { get; set; }
+        //Instead of using peak to decide energy using HOC, using the percentile data to energy
+        public double Percentile { get; set; }
+        public Boolean ValidHOC { get; set; }
 
         #endregion
         #region filePath
@@ -69,6 +74,9 @@ namespace fair_energy_sharing
             this.HarvestingPeakOverConsumptionPeak = 0.3;
             this.Seed = 8765;
             this.FilterHomeIdList = new List<int> { 185,3 };
+            this.HOCwithPeak = false;
+            this.Percentile = 0.75;
+            this.ValidHOC = true;
 
             #endregion
         }

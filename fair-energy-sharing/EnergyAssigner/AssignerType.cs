@@ -11,6 +11,7 @@ namespace fair_energy_sharing.EnergyAssigner
         ProportionAssigner,
         PreferLargerDemandAssigner,
         PreferLargeReputationAssigner,
-        NoShareAssigner
+        NoShareAssigner,
+        EqualAssigner
     }
 }

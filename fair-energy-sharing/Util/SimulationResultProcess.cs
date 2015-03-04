@@ -15,7 +15,7 @@ namespace fair_energy_sharing.Util
         /// </summary>
         /// <param name="homes"></param>
         /// <param name="path"></param>
-        public static void ProcessHomeResult(List<Home> homes, String path)
+        public static void ProcessHomeResult(List<Home> homes, String path, double elapseTime)
         {
 
             homes.Sort(new TotalSupplyIncreaseComparator());
@@ -41,6 +41,7 @@ namespace fair_energy_sharing.Util
             WriteListResultToFile(energyInList, path + "_energyIn.txt");
             WriteListResultToFile(energyOutList, path + "_energyOut.txt");
             WriteListResultToFile(finalReputationList, path + "_reputation.txt");
+            WriteDoubleResultToFile(elapseTime, path + "_timeCost.txt");
 
         }
 

@@ -62,6 +62,9 @@ namespace fair_energy_sharing
                     config.HarvestingPeakOverConsumptionPeak = double.Parse(args[++i]);
                     config.SimulationOutputPath = config.SimulationOutputPath + config.HarvestingPeakOverConsumptionPeak*100+@"\";
                 }
+                else if (arg == "-per") {
+                    config.Percentile = double.Parse(args[++i]);
+                }
                 i++;
                
             }

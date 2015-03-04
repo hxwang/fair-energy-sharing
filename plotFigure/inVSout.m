@@ -30,7 +30,7 @@ end
 figure1 = figure;
 %comment out, otherwise, figure will be normalized
 %set(figure1,'units','normalized','outerposition',[0 0 1 1]);
-set(figure1,  'Visible', 'off')
+ set(figure1,  'Visible', 'off')
 
 % Create axes
 %axis([xmin xmax ymin ymax])
@@ -43,7 +43,8 @@ set(axes1,'FontSize',30,'FontWeight','bold');
 
 
 p= plot(outDataMean(1,:),inDataMean(1,:))
-set(p,'Color','b','LineWidth',3,'linestyle','-')
+ set(p,'Color','b','LineWidth',3,'linestyle','-')
+%set(p,'Color','b')
 set(p,'Marker','o','Markersize',5);
 
 %define assignLabel
@@ -63,6 +64,9 @@ switch assigner
       
     case 'NoShareAssigner'
         assignerLabel = 'NES'
+        
+    case 'EqualAssigner'
+        assignerLabel = 'EES'
        
 end
         

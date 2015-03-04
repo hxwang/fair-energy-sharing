@@ -6,6 +6,7 @@ inVSout('ProportionAssigner',j)
 inVSout('PreferLargerDemandAssigner',j)
 inVSout('PreferLargeReputationAssigner',j)
 inVSout('NoShareAssigner',j)
+inVSout('EqualAssigner',j)
 end
 
 

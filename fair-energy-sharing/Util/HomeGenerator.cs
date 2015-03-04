@@ -34,7 +34,10 @@ namespace fair_energy_sharing.Util
                 energyConsumptionList = sr.ReadListColumn(config.TotalTimeSlot);
 
                 List<double> energyHarvestingList = new List<double>(energyList);
-                RescaleHarvestingEnergy(energyHarvestingList, energyConsumptionList, config.HarvestingPeakOverConsumptionPeak);
+
+                if(!config.ValidHOC)
+                    RescaleHarvestingEnergy(energyHarvestingList, energyConsumptionList, config.HarvestingPeakOverConsumptionPeak, config);
+                else RescaleHarvestingEnergyWithValidHOC(energyHarvestingList, energyConsumptionList, config.HarvestingPeakOverConsumptionPeak, config);
 
                 Home home = new Home(config, energyHarvestingList, energyConsumptionList, candidateHomeList[i]);
                 rnt.Add(home);
@@ -51,20 +54,75 @@ namespace fair_energy_sharing.Util
         /// <param name="harvestingEnergy"></param>
         /// <param name="energyConsumptionList"></param>
         /// <param name="solarPanelSize"></param>
-        public static void RescaleHarvestingEnergy(List<double> harvestingEnergy, List<double> energyConsumptionList, double solarPanelSize)
+        public static void RescaleHarvestingEnergy(List<double> harvestingEnergy, List<double> energyConsumptionList, double solarPanelSize, Config config)
         {
-            double usagePeak = energyConsumptionList.Max();
+            double usage =  energyConsumptionList.Max();
            
-            double harvestPeak = harvestingEnergy.Max();
-            // Console.WriteLine("usagePeak = {0}", usagePeak);
-            // Console.WriteLine("consumptionPeak = {0}", harvestPeak);
+            double harvest = harvestingEnergy.Max();
 
-            double scale = usagePeak==0 ? harvestPeak :  harvestPeak / usagePeak;
+            if (!config.HOCwithPeak) {
+                List<double> tmpHarvestingList = new List<double>(harvestingEnergy);
+                tmpHarvestingList.Sort();
+                int idx1 = (int)(tmpHarvestingList.Count * config.Percentile);
+                harvest = tmpHarvestingList[idx1];
+
+                List<double> tmpEnergyConsumptionList = new List<double>(energyConsumptionList);
+                tmpEnergyConsumptionList.Sort();
+                int idx2 = (int)(tmpEnergyConsumptionList.Count * config.Percentile);
+                usage = tmpEnergyConsumptionList[idx2];
+            
+            }
+            // Console.WriteLine("usage = {0}", usage);
+            // Console.WriteLine("consumptionPeak = {0}", harvest);
+
+            double scale = usage==0 ? harvest :  harvest / usage;
             for (int i = 0; i < harvestingEnergy.Count; i++) { 
                 harvestingEnergy[i] = harvestingEnergy[i]/ scale * solarPanelSize;
             }
                
     
         }
+
+        public static void RescaleHarvestingEnergyWithValidHOC(List<double> harvestingEnergy, List<double> energyConsumptionList, double solarPanelSize, Config config)
+        {
+            double usage = 0;
+            List<double> tmpEnergyConsumptionList = new List<double>();
+            for (int i = 0; i < energyConsumptionList.Count; i++) {
+                if (harvestingEnergy[i] > 0)
+                {
+                    tmpEnergyConsumptionList.Add(energyConsumptionList[i]);
+                  
+                }
+            }
+
+            usage = tmpEnergyConsumptionList.Max();
+         
+            double harvest = harvestingEnergy.Max();
+
+            if (!config.HOCwithPeak)
+            {
+                List<double> tmpHarvestingList = harvestingEnergy.Where(h => h > 0).ToList();
+                tmpHarvestingList.Sort();
+                int idx1 = (int)(tmpHarvestingList.Count * config.Percentile);
+                harvest = tmpHarvestingList[idx1];
+
+
+                tmpEnergyConsumptionList.Sort();
+                int idx2 = (int)(tmpEnergyConsumptionList.Count * config.Percentile);
+                usage = tmpEnergyConsumptionList[idx2];
+
+            }
+            // Console.WriteLine("usage = {0}", usage);
+            // Console.WriteLine("consumptionPeak = {0}", harvest);
+
+            double scale = usage == 0 ? harvest : harvest / usage;
+            for (int i = 0; i < harvestingEnergy.Count; i++)
+            {
+                harvestingEnergy[i] = harvestingEnergy[i] / scale * solarPanelSize;
+            }
+
+
+        }
+        
     }
 }

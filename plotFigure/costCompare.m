@@ -54,7 +54,7 @@ figure1 = figure;
 
 
 % Create axes
-%axis([xmin xmax ymin ymax])
+
 axes1 = axes('Parent',figure1);
 box(axes1,'on');
 hold(axes1,'all');
@@ -70,13 +70,16 @@ p= plot(x(1,:),y2(1,:))
 set(p,'Color','b','LineWidth',3,'linestyle','--')
 set(p,'Marker','o','Markersize',10);
 
+
+
+
 % errorbar(x,y1,delta1,'Color','g')
 % errorbar(x,y2,delta2,'Color','b')
    
 %change x-axis scale 
-axis([1 len 5 16])
+axis([1 len 6 16])
     
-set(axes1,'XGrid','on','YGrid','off');
+set(axes1,'XGrid','on','YGrid','on');
 legend(axes1,'show');
 leg = legend('ES', 'NES')
 set(leg,'FontSize',26);

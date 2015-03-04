@@ -27,16 +27,19 @@ namespace fair_energy_sharing.Simulation
 
             //generate home
             this.Homes = Util.HomeGenerator.GenerateHome(this.Config);
-            
+
+            HiResTimer timer = new HiResTimer();
 
             //run different algorithms
             foreach(String assignerType in Enum.GetNames(typeof(AssignerType))){
                 List<Home> homes = CloneHomes(this.Homes);
                 //Console.WriteLine("--------------------{0}------------------", assignerType);
                 Simulator = new Simulator(Config, homes, assignerType);
+                timer.ReStart();
                 Simulator.Simulate();
+                double elapseTime = timer.TimeElapseInTenthsOfMilliseconds;
                 //write simulation results into file
-                SimulationResultProcess.ProcessHomeResult(homes, Config.SimulationOutputPath+ assignerType);
+                SimulationResultProcess.ProcessHomeResult(homes, Config.SimulationOutputPath + assignerType, elapseTime);
             }
             
         }

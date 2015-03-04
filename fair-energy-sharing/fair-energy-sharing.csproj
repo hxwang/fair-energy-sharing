@@ -48,6 +48,7 @@
     <Compile Include="EnergyAssigner\AssignerType.cs" />
     <Compile Include="EnergyAssigner\AssingerBase.cs" />
     <Compile Include="EnergyAssigner\CGAssigner.cs" />
+    <Compile Include="EnergyAssigner\EqualAssigner.cs" />
     <Compile Include="EnergyAssigner\IAssigner.cs" />
     <Compile Include="EnergyAssigner\NoShareAssigner.cs" />
     <Compile Include="EnergyAssigner\PreferLargerDemandAssigner.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Util\ReadFile.cs" />
     <Compile Include="Util\SimulationResultProcess.cs" />
     <Compile Include="Util\StreamReaderExtension.cs" />
+    <Compile Include="Util\HiResTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
