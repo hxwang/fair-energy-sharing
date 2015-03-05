@@ -12,11 +12,11 @@ namespace fair_energy_sharing.EnergyAssigner
 
         public virtual void updateDemanderCredits(List<Home> demanders)
         {
-            demanders.ForEach(h => { h.Reputation -= h.CurrAcquiredEnergy; });
+            demanders.ForEach(h => { h.UpdateReputation(-h.CurrAcquiredEnergy); });
         }
 
         public virtual void updateSupplierCredits(List<Home> suppliers) {
-            suppliers.ForEach(h => { h.Reputation += h.CurrSuppliedEnergy; });
+            suppliers.ForEach(h => { h.UpdateReputation( h.CurrSuppliedEnergy); });
         }
 
         public virtual void updateEnergyCost(List<Home> demanders) {

@@ -34,6 +34,7 @@ namespace fair_energy_sharing.Util
                 energyInList.Add(h.AcquiredEnergyList.Sum());
                 energyOutList.Add(h.SuppliedEnergyList.Sum());
                 finalReputationList.Add(h.Reputation);
+                WriteListResultToFile(h.ReputationList.ToList(), path + "_reputationList.txt");
             });
 
             WriteListResultToFile(costList, path + "_cost.txt");
@@ -44,6 +45,8 @@ namespace fair_energy_sharing.Util
             WriteDoubleResultToFile(elapseTime, path + "_timeCost.txt");
 
         }
+
+        
 
         /// <summary>
         /// write list to file in append mode

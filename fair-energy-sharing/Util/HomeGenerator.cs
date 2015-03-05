@@ -47,6 +47,10 @@ namespace fair_energy_sharing.Util
             return rnt;
         }
 
+        public static  List<Home> GenerateSimulatedHome(Config config) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// rescale the harvesting energy amount for each home to match with the power consumption
         /// Rule: the peak harvestign energy can cover x times of the peak energy demand, where x = solarPanelSize

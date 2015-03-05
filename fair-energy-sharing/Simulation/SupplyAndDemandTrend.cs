@@ -36,7 +36,7 @@ namespace fair_energy_sharing.Simulation
                 //Console.WriteLine("--------------------{0}------------------", assignerType);
                 Simulator = new Simulator(Config, homes, assignerType);
                 timer.ReStart();
-                Simulator.Simulate();
+                Simulator.Simulate(0, Config.TotalTimeSlot-1);
                 double elapseTime = timer.TimeElapseInTenthsOfMilliseconds;
                 //write simulation results into file
                 SimulationResultProcess.ProcessHomeResult(homes, Config.SimulationOutputPath + assignerType, elapseTime);

@@ -69,7 +69,7 @@ namespace fair_energy_sharing.Model
             }
         }
 
-        public double Reputation { get; set; }
+        public double Reputation { get; protected set; }
         
         
         public HomeType HomeType
@@ -101,6 +101,8 @@ namespace fair_energy_sharing.Model
         /// </summary>
         public  double[] AcquiredEnergyList;
 
+        public double[] ReputationList;
+
         /// <summary>
         /// energy monetary cost at each time slot
         /// </summary>
@@ -126,7 +128,8 @@ namespace fair_energy_sharing.Model
 
             this.SuppliedEnergyList = new double[totalTimeSlot];
             this.AcquiredEnergyList = new double[totalTimeSlot];
-            this.EnergyCostList = new double[totalTimeSlot];                        
+            this.EnergyCostList = new double[totalTimeSlot];
+            this.ReputationList = new double[totalTimeSlot];         
 
             this.Reputation = 0;
             this.CurrTime = 0;
@@ -140,6 +143,10 @@ namespace fair_energy_sharing.Model
             Home home = new Home(this.Config, this.EnergyHarvestingList, this.EnergyConsumptionList, this.HomeId);
             return home;
         }
+
+        public Home CloneWithReputation() {
+            throw new NotImplementedException();
+        }
        
 
         public void UpdateSuppliedEnergy(double newVal)
@@ -152,6 +159,10 @@ namespace fair_energy_sharing.Model
             this.AcquiredEnergyList[this.CurrTime] = newVal;
         }
 
+        public void UpdateReputation(double val) {
+            this.Reputation = this.Reputation + val;
+            this.ReputationList[CurrTime] = this.Reputation;
+        }
         public void UpdateEnergyCost(double newVal)
         {
             this.EnergyCostList[this.CurrTime] = newVal;

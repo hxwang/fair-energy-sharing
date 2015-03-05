@@ -73,7 +73,8 @@ namespace fair_energy_sharing
             this.TotalHomeCount = 311;
             this.HarvestingPeakOverConsumptionPeak = 0.3;
             this.Seed = 8765;
-            this.FilterHomeIdList = new List<int> { 185,3 };
+            //this.FilterHomeIdList = new List<int> { 185,3 };
+            this.FilterHomeIdList = new List<int>();
             this.HOCwithPeak = false;
             this.Percentile = 0.75;
             this.ValidHOC = true;
