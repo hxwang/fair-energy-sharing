@@ -16,14 +16,28 @@ namespace fair_energy_sharing
 
             deltePreviousResult(config);
             PrintConfig(config);
-            testCGAssigner(config);
+            if(config.IsRunReputationCurSim)
+                SimReputationCurve(config);
+            else testCGAssigner(config);
+            
         }
 
 
         public static void deltePreviousResult(Config config) {
-            System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(config.SimulationOutputPath);
+            if (config.IsRunReputationCurSim)
+            {
+                System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(config.ReputationCurveSimulationOutputPath);
 
-            Empty(directory);
+                Empty(directory);
+            }
+            else
+            {
+                System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(config.SimulationOutputPath);
+
+                Empty(directory);
+            }
+
+            
         
         }
 
@@ -39,6 +53,11 @@ namespace fair_energy_sharing
         public static void testCGAssigner(Config config) { 
             SupplyAndDemandTrend sim = new SupplyAndDemandTrend(config);
             sim.runRepeatSimulation();
+        }
+
+        public static void SimReputationCurve(Config config) {
+            ReputationCurve sim = new ReputationCurve(config);
+            sim.RunOneSimulation();
         }
 
         public static void UpdateConfig(string[] args, Config config) {
@@ -61,9 +80,14 @@ namespace fair_energy_sharing
                 else if(arg == "-ratio"){
                     config.HarvestingPeakOverConsumptionPeak = double.Parse(args[++i]);
                     config.SimulationOutputPath = config.SimulationOutputPath + config.HarvestingPeakOverConsumptionPeak*100+@"\";
+                    config.ReputationCurveSimulationOutputPath = config.ReputationCurveSimulationOutputPath + config.HarvestingPeakOverConsumptionPeak * 100 + @"\";
                 }
                 else if (arg == "-per") {
                     config.Percentile = double.Parse(args[++i]);
+                }
+                else if (arg == "-simRepCur") {
+                    config.IsRunReputationCurSim = true;
+                    config.TotalTimeSlot = 2;
                 }
                 i++;
                

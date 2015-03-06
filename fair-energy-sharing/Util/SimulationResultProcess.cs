@@ -46,6 +46,29 @@ namespace fair_energy_sharing.Util
 
         }
 
+        public static void ProcessReputationCurveResult(List<Home> homes, String path)
+        {
+            //sort home in order by ID
+            homes.Sort(new HomeIdComparator());
+         
+            
+            var energyInList = new List<double>();
+          
+            var finalReputationList = new List<double>();
+
+            homes.ForEach(h =>
+            {               
+                energyInList.Add(h.CurrAcquiredEnergy);              
+                finalReputationList.Add(h.Reputation);
+                WriteListResultToFile(h.ReputationList.ToList(), path + "_reputationList.txt");
+            });
+
+          
+            WriteListResultToFile(energyInList, path + "_energyIn.txt");
+            
+            WriteListResultToFile(finalReputationList, path + "_reputation.txt");
+        }
+
         
 
         /// <summary>

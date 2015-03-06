@@ -47,8 +47,32 @@ namespace fair_energy_sharing.Util
             return rnt;
         }
 
+        /// <summary>
+        /// generate simulation home traces
+        /// Objective: test the assignment under FES and HRF
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
         public static  List<Home> GenerateSimulatedHome(Config config) {
-            throw new NotImplementedException();
+
+            var reputationFilePath = config.SimHomeReputationPath + "reputation.txt";
+            StreamReader sr  = new StreamReader(reputationFilePath);
+            var totalreputationList = sr.ReadListColumn(config.SimulationHomeCount);
+            List<Home> homes = new List<Home>();
+            Console.WriteLine("Read home count ={0}, simulated home acount = {1}", totalreputationList.Count, config.SimulationHomeCount);
+
+            for (int i = 0; i < config.SimulationHomeCount; i++)
+            {
+                var harvestList = new List<double> { 0, 0 };
+                var consumptionList = new List<double> { 0, config.SimHomeElectricityDemand };
+                var reputationList = new List<double>{totalreputationList[i], 0};
+                Home home = new Home(config, harvestList, consumptionList, i);
+                home.ReputationList = reputationList.ToArray();
+                home.UpdateReputation(totalreputationList[i]);
+                homes.Add(home);
+            }
+
+            return homes;
         }
 
         /// <summary>

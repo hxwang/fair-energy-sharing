@@ -8,6 +8,7 @@ namespace fair_energy_sharing.EnergyAssigner
 {
     public interface IAssigner
     {
+        Config Config { get; set; }
         void Assign(List<Home> homes);
     }
 }

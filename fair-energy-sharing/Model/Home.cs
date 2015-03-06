@@ -233,4 +233,12 @@ namespace fair_energy_sharing.Model
             return x.SuppliedEnergyList.Sum().CompareTo(y.SuppliedEnergyList.Sum());
         }
     }
+
+
+    class HomeIdComparator : IComparer<Home>
+    {
+        public int Compare(Home x, Home y) {
+            return x.HomeId.CompareTo(y.HomeId);
+        }
+    }
 }

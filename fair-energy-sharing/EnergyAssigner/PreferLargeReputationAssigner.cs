@@ -6,8 +6,9 @@ using System.Text;
 
 namespace fair_energy_sharing.EnergyAssigner
 {
+
     public class PreferLargeReputationAssigner:AssingerBase
-    {
+    {        
 
         public override void Assign(List<Home> homes)
         {
@@ -20,8 +21,10 @@ namespace fair_energy_sharing.EnergyAssigner
 
             double totalDemandEnergy = demanders.Sum(d => d.OriginEnergyDemand);
             double totalSupplyEnergy = suppliers.Sum(s => s.OriginEnergySupply);
+            if (this.Config.IsRunReputationCurSim) totalSupplyEnergy = this.Config.SimTotalEnergySupply;
 
-            if (suppliers.Count != 0 && demanders.Count != 0 && totalDemandEnergy != 0 && totalSupplyEnergy != 0)
+            //if (suppliers.Count != 0 && demanders.Count != 0 && totalDemandEnergy != 0 && totalSupplyEnergy != 0)
+            if(totalDemandEnergy > 1e-3 && totalSupplyEnergy > 1e-3)
             {
                 if (totalSupplyEnergy <= totalDemandEnergy)
                 {

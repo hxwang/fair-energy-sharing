@@ -16,7 +16,8 @@ namespace fair_energy_sharing.Simulation
         public Simulator(Config config, List<Home> homes, string assignerType) {
             this.Config = config;
             this.Homes = homes;
-            this.Assigner = AssignerFactory.CreateAssigner(assignerType);
+            this.Assigner = AssignerFactory.CreateAssigner(assignerType, config);
+           
         }
 
         

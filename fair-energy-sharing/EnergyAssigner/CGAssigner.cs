@@ -9,14 +9,19 @@ namespace fair_energy_sharing.EnergyAssigner
 
     public class CGAssigner : AssingerBase
     {
+
+
         public override void Assign(List<Home> homes)
         {
             List<Home> suppliers = homes.Where(h => h.HomeType == HomeType.Supplier).ToList();
             List<Home> demanders = homes.Where(h => h.HomeType == HomeType.Demander).ToList();
             double totalEnergySupply = suppliers.Sum(h => h.OriginEnergySupply);
             double totalEnergyDemand = demanders.Sum(h => h.OriginEnergyDemand);
+            if (this.Config.IsRunReputationCurSim) totalEnergySupply = this.Config.SimTotalEnergySupply;
+ 
 
-            if (demanders.Count != 0 && suppliers.Count != 0)
+            //if (demanders.Count != 0 && suppliers.Count != 0)
+            if(totalEnergySupply>1e-3 && totalEnergyDemand>1e-3)
             {
                 if (totalEnergySupply <= totalEnergyDemand)
                 {
@@ -100,7 +105,7 @@ namespace fair_energy_sharing.EnergyAssigner
         public void calculateTotalAssign(List<Home> demanders) {
             demanders.ForEach(d =>
                 {
-                    d.UpdateAcquiredEnergy(d.AcquiredAdjustReputationEnergy + d.CurrAcquiredEnergy);
+                    d.UpdateAcquiredEnergy(Math.Min(d.OriginEnergyDemand,d.AcquiredAdjustReputationEnergy + d.CurrAcquiredEnergy));
 
                 });
         }
@@ -133,7 +138,7 @@ namespace fair_energy_sharing.EnergyAssigner
                     totalEnergySupply = 0;
                     for (int j = i; j < demanders.Count; j++) {
                         Home remainHome = demanders[j];
-                        remainHome.UpdateAcquiredEnergy(equalAssign);
+                        remainHome.UpdateAcquiredEnergy(Math.Min(remainHome.OriginEnergyDemand, equalAssign));
                     }
                     break;
                 }

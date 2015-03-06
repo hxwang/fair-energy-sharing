@@ -8,6 +8,8 @@ namespace fair_energy_sharing.EnergyAssigner
 {
     public abstract class AssingerBase: IAssigner
     {
+        public Config Config { get; set; }
+
         public abstract void Assign(List<Home> homes);
 
         public virtual void updateDemanderCredits(List<Home> demanders)
