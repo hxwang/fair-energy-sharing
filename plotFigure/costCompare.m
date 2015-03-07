@@ -73,8 +73,8 @@ set(p,'Marker','o','Markersize',10);
 
 
 
-% errorbar(x,y1,delta1,'Color','g')
-% errorbar(x,y2,delta2,'Color','b')
+%  errorbar(x,y1,delta1,'Color','g')
+%  errorbar(x,y2,delta2,'Color','b')
    
 %change x-axis scale 
 axis([1 len 6 16])
