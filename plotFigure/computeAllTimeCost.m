@@ -86,7 +86,7 @@ axis([9.9 300.1 0 7000])
 
 set(axes1,'XGrid','on','YGrid','off');
 legend(axes1,'show');
-leg = legend('FES', 'EES', 'PES', 'HDF', 'HRF')
+leg = legend('FET', 'EET', 'PET', 'HDF', 'HRF')
 set(leg,'FontSize',26, 'location', 'northwest');
 
 set(get(axes1,'XLabel'),'String','Home count','FontSize',30,'FontWeight','bold');

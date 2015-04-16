@@ -21,8 +21,10 @@ figure1 = figure;
 %set(figure1,'units','normalized','outerposition',[0 0 1 1]);
 set(figure1,  'Visible', 'off')
 
+
+
 % Create axes
-%axis([xmin xmax ymin ymax])
+[count, X]  = hist(meanData(1,:),100)
 axes1 = axes('Parent',figure1);
 box(axes1,'on');
 hold(axes1,'all');
@@ -30,19 +32,28 @@ hold(axes1,'all');
 set(axes1,'FontSize',30,'FontWeight','bold');
 
 
-
+ hist(meanData(1,:),100)
 % p= plot(x(1,:),y1(1,:))
 % set(p,'Color','g','LineWidth',3,'linestyle','-')
 % set(p,'Marker','^','Markersize',10);
-hist(meanData(1,:),100)
+
+
+
+assigner
+minx = floor(min(meanData)/50)*50
+maxx = ceil(max(meanData)/50)*50
+miny =  floor(min(count)/20)*20
+maxy =ceil(max(count)/20)*20
+
+axis([minx maxx  0   maxy])
 
 assignerLabel ='a'
 switch assigner
     case 'CGAssigner'
-        assignerLabel = 'FES';
+        assignerLabel = 'FET';
        
     case 'ProportionAssigner'
-        assignerLabel = 'PES';
+        assignerLabel = 'PET';
        
     case 'PreferLargerDemandAssigner'
         assignerLabel = 'HDF';
@@ -51,9 +62,9 @@ switch assigner
         assignerLabel = 'HRF';
       
     case 'NoShareAssigner'
-        assignerLabel = 'NES'
+        assignerLabel = 'NET'
     case 'EqualAssigner'
-         assignerLabel = 'EES'
+         assignerLabel = 'EET'
        
 end
     

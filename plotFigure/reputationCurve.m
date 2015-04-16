@@ -116,7 +116,7 @@ legend([H1 H2],'Reputation','Energe acquisition','Location','NorthWest');
 
 
 %    legend('greedy','opt\_theoretical')
-set(get(axes1,'XLabel'),'String','Homes','FontSize',30,'FontWeight','bold');
+set(get(axes1,'XLabel'),'String','Home Id','FontSize',30,'FontWeight','bold');
 % set(get(axes1,'YLabel'),'String','Estimated Attacker Number','FontSize',30,'FontWeight','bold');
 set(get(AX(1),'YLabel'),'String','Reputation','FontSize',30,'FontWeight','bold');
 set(get(AX(2),'Ylabel'),'String','Energe acquisition (kWh)','FontSize',30,'FontWeight','bold');

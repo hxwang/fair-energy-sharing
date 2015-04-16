@@ -81,7 +81,7 @@ axis([1 len 6 16])
     
 set(axes1,'XGrid','on','YGrid','on');
 legend(axes1,'show');
-leg = legend('ES', 'NES')
+leg = legend('ET', 'NET')
 set(leg,'FontSize',26);
 
 

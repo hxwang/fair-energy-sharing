@@ -51,10 +51,10 @@ set(p,'Marker','o','Markersize',5);
 assignerLabel ='a'
 switch assigner
     case 'CGAssigner'
-        assignerLabel = 'FES';
+        assignerLabel = 'FET';
        
     case 'ProportionAssigner'
-        assignerLabel = 'PES';
+        assignerLabel = 'PET';
        
     case 'PreferLargerDemandAssigner'
         assignerLabel = 'HDF';
@@ -63,10 +63,10 @@ switch assigner
         assignerLabel = 'HRF';
       
     case 'NoShareAssigner'
-        assignerLabel = 'NES'
+        assignerLabel = 'NET'
         
     case 'EqualAssigner'
-        assignerLabel = 'EES'
+        assignerLabel = 'EET'
        
 end
         
