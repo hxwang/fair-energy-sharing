@@ -14,7 +14,8 @@ namespace fair_energy_sharing
             UpdateConfig(args, config);
             Util.RandomGenerator.SetSeed(config.Seed);
 
-            deltePreviousResult(config);
+            if(config.ClearFiles)
+                deltePreviousResult(config);
             PrintConfig(config);
             if(config.IsRunReputationCurSim)
                 SimReputationCurve(config);
@@ -89,6 +90,9 @@ namespace fair_energy_sharing
                     config.IsRunReputationCurSim = true;
                     config.TotalTimeSlot = 2;
                 }
+                else if (arg == "-notClearFile") {
+                    config.ClearFiles = false;
+                }
                 i++;
                
             }
@@ -96,7 +100,7 @@ namespace fair_energy_sharing
         }
 
         public static void PrintConfig(Config config) {
-            Console.WriteLine("Config ratio = {0}, simHomeCount = {1}, timeSlot = {2}", config.HarvestingPeakOverConsumptionPeak, config.TotalHomeCount, config.TotalTimeSlot);
+            Console.WriteLine("Config ratio = {0}, simHomeCount = {1}, timeSlot = {2}", config.HarvestingPeakOverConsumptionPeak, config.SimulationHomeCount, config.TotalTimeSlot);
         
         }
     }
