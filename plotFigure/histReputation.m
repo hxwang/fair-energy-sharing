@@ -4,14 +4,14 @@ function histReputation(assigner,ratio)
 
 
 fileDir =  '..\simulationResult\';
-
+convertToKhW = 12
 
 fileName = strcat(fileDir, num2str(ratio*100),'\',assigner,'_reputation.txt')
 data = load(fileName);
 meanData = zeros(1, size(data,2))
 
 for i=1:1:size(data,2)
-    meanData(1,i) = mean(data(:,i))
+    meanData(1,i) = mean(data(:,i))./convertToKhW
 end
 
 
@@ -29,7 +29,7 @@ axes1 = axes('Parent',figure1);
 box(axes1,'on');
 hold(axes1,'all');
 %do not open show the figures
-set(axes1,'FontSize',30,'FontWeight','bold');
+set(axes1,'FontSize',35,'FontWeight','bold');
 
 
  hist(meanData(1,:),100)
@@ -40,10 +40,11 @@ set(axes1,'FontSize',30,'FontWeight','bold');
 
 
 assigner
-minx = floor(min(meanData)/50)*50
-maxx = ceil(max(meanData)/50)*50
-miny =  floor(min(count)/20)*20
-maxy =ceil(max(count)/20)*20
+unit = 5
+minx = floor(min(meanData)/unit)*unit
+maxx = ceil(max(meanData)/unit)*unit
+miny =  floor(min(count)/unit)*unit
+maxy =ceil(max(count)/unit)*unit
 
 axis([minx maxx  0   maxy])
 
@@ -71,7 +72,7 @@ end
 set(axes1,'XGrid','on','YGrid','off');
 legend(axes1,'show');
 leg = legend(assignerLabel)
-set(leg,'FontSize',26);
+set(leg,'FontSize',35);
 
 
 % set(axes1,'YTick', [20,40,60,80,100], 'YTickLabel',{ 20,40,60,80,100},'XGrid','off','YGrid','off');
@@ -86,12 +87,12 @@ set(leg,'FontSize',26);
 % legend('1K,Enumeration','1K,Approximation','5K,Enumeration','5K,Approximation','10K,Enumeration','10K,Approximation','100K,Enumeration','100K,Approximation')
 
 
-set(get(axes1,'XLabel'),'String','Reputation','FontSize',30,'FontWeight','bold');
-set(get(axes1,'YLabel'),'String','Home count','FontSize',30,'FontWeight','bold');
+set(get(axes1,'XLabel'),'String','Reputation','FontSize',35,'FontWeight','bold');
+set(get(axes1,'YLabel'),'String','Home count','FontSize',35,'FontWeight','bold');
 
 %save to file
-set(gcf, 'PaperPosition', [0 0 13 7]); %Position plot at left hand corner with width 5 and height 5.
-set(gcf, 'PaperSize', [13 7]); %Set the paper to have width 5 and height 5.
+set(gcf, 'PaperPosition', [0 0 13 8]); %Position plot at left hand corner with width 5 and height 5.
+set(gcf, 'PaperSize', [13 8]); %Set the paper to have width 5 and height 5.
 %saveas(gcf, 'SolarTrace_High', 'pdf') %Save figure
 saveas(gcf, strcat('.\figures\histreputation', assignerLabel, '_', num2str(ratio*100)), 'pdf') %Save figure  
 saveas(gca, strcat('.\figures\histreputation',assignerLabel, '_', num2str(ratio*100), '.eps'),'psc2') %Save figure 

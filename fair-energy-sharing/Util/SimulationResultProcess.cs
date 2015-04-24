@@ -34,15 +34,24 @@ namespace fair_energy_sharing.Util
                 energyInList.Add(h.AcquiredEnergyList.Sum());
                 energyOutList.Add(h.SuppliedEnergyList.Sum());
                 finalReputationList.Add(h.Reputation);
-                WriteListResultToFile(h.ReputationList.ToList(), path + "_reputationList.txt");
+                //WriteListResultToFile(h.ReputationList.ToList(), path + "homeCount_"+homes.Count+"_reputationList.txt");
+                WriteListResultToFile(h.ReputationList.ToList(), path  + "_reputationList.txt");
             });
 
+            //WriteListResultToFile(costList, path + "homeCount_" + homes.Count + "_cost.txt");
+            //WriteDoubleResultToFile(costList.Average(), path + "homeCount_" + homes.Count + "_Meancost.txt");
+            //WriteListResultToFile(energyInList, path + "homeCount_" + homes.Count + "_energyIn.txt");
+            //WriteListResultToFile(energyOutList, path + "homeCount_" + homes.Count + "_energyOut.txt");
+            //WriteListResultToFile(finalReputationList, path + "homeCount_" + homes.Count + "_reputation.txt");
+            //WriteDoubleResultToFile(elapseTime, path + "homeCount_" + homes.Count + "_timeCost.txt");
+
             WriteListResultToFile(costList, path + "_cost.txt");
-            WriteDoubleResultToFile(costList.Average(), path + "_Meancost.txt");
-            WriteListResultToFile(energyInList, path + "_energyIn.txt");
-            WriteListResultToFile(energyOutList, path + "_energyOut.txt");
+            WriteDoubleResultToFile(costList.Average(), path  + "_Meancost.txt");
+            WriteListResultToFile(energyInList, path  + "_energyIn.txt");
+            WriteListResultToFile(energyOutList, path  + "_energyOut.txt");
             WriteListResultToFile(finalReputationList, path + "_reputation.txt");
-            WriteDoubleResultToFile(elapseTime, path + "_timeCost.txt");
+            WriteDoubleResultToFile(elapseTime, path  + "_timeCost.txt");
+            
 
         }
 

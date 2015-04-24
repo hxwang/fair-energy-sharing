@@ -38,6 +38,11 @@ namespace fair_energy_sharing
         public  Boolean IsRunReputationCurSim;
         #endregion
 
+
+        #region sigmulation setting
+        public Boolean ClearFiles;
+        #endregion
+
         #region filePath
         public String SimulationOutputPath { get;  set; }
         public String HomeEnergyConsumptionTracePath { get; private set; }
@@ -92,6 +97,7 @@ namespace fair_energy_sharing
             this.HOCwithPeak = false;
             this.Percentile = 0.75;
             this.ValidHOC = true;
+            this.ClearFiles = true;
 
             #region simulation reputation curve
             this.SimHomeElectricityDemand = 50;
@@ -99,7 +105,11 @@ namespace fair_energy_sharing
             this.IsRunReputationCurSim = false;
             #endregion
 
+
             #endregion
+
+
+           
 
            
 

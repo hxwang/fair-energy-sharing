@@ -4,7 +4,7 @@ function inVSout(assigner,ratio)
 
 
 fileDir =  '..\simulationResult\';
-
+convertToKhW = 12
 
 inFileName = strcat(fileDir, num2str(ratio*100),'\',assigner,'_energyIn.txt')
 inData = load(inFileName);
@@ -20,8 +20,8 @@ inDataMean = zeros(1, homeCount);
 outDataMean = zeros(1, homeCount);
 
 for i = 1:1:homeCount
-    inDataMean(1,i) = mean(inData(:,i));
-    outDataMean(1,i) = mean(outData(:,i));
+    inDataMean(1,i) = mean(inData(:,i))./convertToKhW;
+    outDataMean(1,i) = mean(outData(:,i))./convertToKhW;
 end
   
 
@@ -33,19 +33,19 @@ figure1 = figure;
  set(figure1,  'Visible', 'off')
 
 % Create axes
-%axis([xmin xmax ymin ymax])
+
 axes1 = axes('Parent',figure1);
 box(axes1,'on');
 hold(axes1,'all');
 %do not open show the figures
-set(axes1,'FontSize',30,'FontWeight','bold');
-
+set(axes1,'FontSize',35,'FontWeight','bold');
+xlim(axes1, [-0.1 ceil(max(outDataMean)/10)*10])
 
 
 p= plot(outDataMean(1,:),inDataMean(1,:))
- set(p,'Color','b','LineWidth',3,'linestyle','-')
+ set(p,'Color','b','LineWidth',5,'linestyle','-')
 %set(p,'Color','b')
-set(p,'Marker','o','Markersize',5);
+set(p,'Marker','o','Markersize',12);
 
 %define assignLabel
 assignerLabel ='a'
@@ -76,7 +76,7 @@ end
 set(axes1,'XGrid','on','YGrid','off');
 legend(axes1,'show');
 leg = legend(assignerLabel)
-set(leg,'FontSize',26, 'location', 'southeast');
+set(leg,'FontSize',35, 'location', 'southeast');
 
 
 % set(axes1,'YTick', [20,40,60,80,100], 'YTickLabel',{ 20,40,60,80,100},'XGrid','off','YGrid','off');
@@ -91,12 +91,12 @@ set(leg,'FontSize',26, 'location', 'southeast');
 % legend('1K,Enumeration','1K,Approximation','5K,Enumeration','5K,Approximation','10K,Enumeration','10K,Approximation','100K,Enumeration','100K,Approximation')
 
 
-set(get(axes1,'XLabel'),'String','Energy contributed','FontSize',30,'FontWeight','bold');
-set(get(axes1,'YLabel'),'String','Energy acquired','FontSize',30,'FontWeight','bold');
+set(get(axes1,'XLabel'),'String','Energy contributed (kWh)','FontSize',35,'FontWeight','bold');
+set(get(axes1,'YLabel'),'String','Energy acquired (kWh)','FontSize',35,'FontWeight','bold');
 
 %save to file
-set(gcf, 'PaperPosition', [0 0 13 7]); %Position plot at left hand corner with width 5 and height 5.
-set(gcf, 'PaperSize', [13 7]); %Set the paper to have width 5 and height 5.
+set(gcf, 'PaperPosition', [0 0 13 8]); %Position plot at left hand corner with width 5 and height 5.
+set(gcf, 'PaperSize', [13 8]); %Set the paper to have width 5 and height 5.
 %saveas(gcf, 'SolarTrace_High', 'pdf') %Save figure
 saveas(gcf, strcat('.\figures\inVSout', assignerLabel, '_', num2str(ratio*100)), 'pdf') %Save figure  
 saveas(gca, strcat('.\figures\inVSout',assignerLabel, '_', num2str(ratio*100), '.eps'),'psc2') %Save figure 
