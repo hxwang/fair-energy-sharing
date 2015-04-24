@@ -5,7 +5,11 @@
 
 
 
+<<<<<<< HEAD
 FOR %%G IN (1) DO ..\fair-energy-sharing\bin\Debug\fair-energy-sharing.exe -t 1440 -r 100 -hc 100 -per 0.75 -ratio %%G
+=======
+FOR %%G IN (1) DO ..\fair-energy-sharing\bin\Debug\fair-energy-sharing.exe -t 1440 -r 100 -hc 250 -per 0.75 -notClearFile -ratio %%G
+>>>>>>> c3c3753b69a86172fe84a44371a4d3f09d457260
 pause
 
 :compare different algorithm
